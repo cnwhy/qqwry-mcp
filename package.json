@@ -1,0 +1,37 @@
+{
+  "name": "@cnwhy/qqwry-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for QQWry IP database query",
+  "author": "cnwhy(w.why@qq.com)",
+  "main": "mcpServer.js",
+  "bin": "./StdioServer.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test-stdio-demo.js",
+    "test:http": "node test-http-demo.js",
+    "chmod": "shx chmod +x ./*.js"
+  },
+  "keywords": [
+    "mcp",
+    "qqwry",
+    "ip",
+    "geolocation"
+  ],
+  "type": "module",
+  "files": [
+    "*.js"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "express": "^5.1.0",
+    "lib-qqwry": "^1.0.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "shx": "^0.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

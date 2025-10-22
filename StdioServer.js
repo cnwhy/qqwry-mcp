@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+import mcpServer from './mcpServer.js'
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+async function main() {
+  const transport = new StdioServerTransport();
+  // console.log('run main');
+  await mcpServer.connect(transport);
+}
+
+main().catch((error) => {
+  console.error("Fatal error in main():", error);
+  process.exit(1);
+});
+
