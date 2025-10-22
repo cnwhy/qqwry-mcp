@@ -1,8 +1,8 @@
 {
   "name": "@cnwhy/qqwry-mcp",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.1",
   "description": "MCP server for QQWry IP database query",
-  "author": "cnwhy(w.why@qq.com)",
+  "author": "cnwhy",
   "main": "mcpServer.js",
   "bin": "./StdioServer.js",
   "scripts": {
@@ -21,6 +21,11 @@
   "files": [
     "*.js"
   ],
+  "homepage": "https://github.com/cnwhy/qqwry-mcp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cnwhy/qqwry-mcp.git"
+  },
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",

@@ -1,4 +1,4 @@
-# QQWry MCP 服务
+# @cnwhy/qqwry-mcp
 
 一个基于 [Model Context Protocol (MCP)](https://modelcontextprotocol.io) 的轻量级服务，用于提供纯真(QQWry) IP 数据库的地理定位查询能力。
 
@@ -21,30 +21,21 @@
 
 ## 使用方法
 
-### 作为命令行工具使用
+### MCP配置
 
-```bash
-# 全局安装后使用
-npm install -g qqwry-mcp
-mcp-qqwry
-
-# 或者使用 npx 直接运行
-npx qqwry-mcp
+```json
+{
+  "mcpServers": {
+    "qqwry": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@cnwhy/qqwry-mcp"
+      ]
+    }
+  }
+}
 ```
-
-### 作为 HTTP 服务运行
-
-```bash
-# 启动 HTTP 服务
-npm start
-
-# 默认监听在 3000 端口，可通过 PORT 环境变量修改
-# 服务端点为 http://localhost:3000/mcp
-```
-
-### 作为 MCP 插件集成
-
-该服务可以作为 MCP 插件集成到支持 MCP 的 IDE 或 AI 工具中。
 
 ### 环境变量
 
