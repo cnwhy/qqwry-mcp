@@ -47,7 +47,7 @@ mcpServer.registerTool(
         structuredContent: output
       };
     } catch (error) {
-      throw new Error(`Error querying IP: ${error.message}`);
+      throw new Error(`Error querying IP: ${typeof error === 'string' ? error : error?.message}`);
     }
   }
 );
@@ -88,7 +88,7 @@ mcpServer.registerTool(
         structuredContent: output
       };
     } catch (error) {
-      throw new Error(`Error querying IP: ${error.message}`);
+      throw new Error(`Error querying IP: ${typeof error === 'string' ? error : error?.message}`);
     }
   }
 );
@@ -140,29 +140,11 @@ mcpServer.registerTool(
               }
             } else {
               // 无效 mode 处理
-              console.error(`无效的 mode: "${mode}"。 mode 必须是 'any' 或 'all'。`);
-              return false;
+              throw new TypeError(`无效的 mode: "${mode}"。 mode 必须是 'any' 或 'all'。`);
             }
           } catch (error) {
             reject(error);
           }
-
-          // let _isMatch;
-          // if (ignoreCase) {
-          //   keyword = keyword.map(v => v.toLocaleLowerCase());
-          //   _isMatch = function (str, key) {
-          //     return ~str.toLocaleLowerCase().indexOf(key);
-          //   };
-          // } else {
-          //   _isMatch = function (str, key) {
-          //     return str.indexOf(key) != -1;
-          //   };
-          // }
-          // return str => {
-          //   for (let key of keyword) {
-          //     if (_isMatch(str, key)) return true;
-          //   }
-          // };
 
 
         })();
@@ -192,7 +174,7 @@ mcpServer.registerTool(
         structuredContent: output
       };
     } catch (error) {
-      throw new Error(`Error querying IP: ${error.message}`);
+      throw new Error(`Error querying IP: ${typeof error === 'string' ? error : error?.message}`);
     }
   }
 );
@@ -218,7 +200,7 @@ mcpServer.registerTool(
       msg += `当前IP库版本为: ${info.Area}`
     } catch (error) {
       qqwry = _oldQqwry;
-      msg = `切换失败！error: ${ error.message || '位置错误!'}; 请检查文件路径是否正确！只支持原始的纯真IP库文件,一般文件名为 qqwry.dat`;
+      msg = `切换失败！error: ${error.message || '位置错误!'}; 请检查文件路径是否正确！只支持原始的纯真IP库文件,一般文件名为 qqwry.dat`;
     }
     return {
       content: [{ type: 'text', text: msg }],

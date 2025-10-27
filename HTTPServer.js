@@ -1,4 +1,5 @@
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import { SSEServerTransport } from '@modelcontextprotocol/sdk/server/sse.js';
 import express from 'express';
 import server from './mcpServer.js'
 
@@ -19,6 +20,37 @@ app.post('/mcp', async (req, res) => {
 
   await server.connect(transport);
   await transport.handleRequest(req, res, req.body);
+});
+
+// 兼容旧版SSE
+
+
+const transports = {
+    streamable: {},
+    sse: {}
+};
+
+app.get('/sse', async (req, res) => {
+    // Create SSE transport for legacy clients
+    const transport = new SSEServerTransport('/messages', res);
+    transports.sse[transport.sessionId] = transport;
+
+    res.on('close', () => {
+        delete transports.sse[transport.sessionId];
+    });
+
+    await server.connect(transport);
+});
+
+// Legacy message endpoint for older clients
+app.post('/messages', async (req, res) => {
+    const sessionId = req.query.sessionId;
+    const transport = transports.sse[sessionId];
+    if (transport) {
+        await transport.handlePostMessage(req, res, req.body);
+    } else {
+        res.status(400).send('No transport found for sessionId');
+    }
 });
 
 const port = parseInt(process.env.PORT || '3000');

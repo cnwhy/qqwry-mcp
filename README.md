@@ -1,4 +1,4 @@
-# @cnwhy/qqwry-mcp
+# QQWry MCP 服务
 
 一个基于 [Model Context Protocol (MCP)](https://modelcontextprotocol.io) 的轻量级服务，用于提供纯真(QQWry) IP 数据库的地理定位查询能力。
 
@@ -40,7 +40,7 @@
 ### 环境变量
 
 - `QQWRY_DATA_PATH`: 指定纯真 IP 数据库文件路径（可选，默认使用内置路径）
-- `PORT`: HTTP 服务监听端口（可选，默认 3000）
+- `PORT`: web服务监听端口（可选，默认 3000，使用web服务模式时有效）
 
 ## 测试示例
 
